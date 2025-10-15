@@ -3,8 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 // though the original uses simple text characters (✕, ➤).
 
 // --- Configuration ---
-// 🚨 IMPORTANT: Use HTTP for local testing! Change to HTTPS for live deployment.
-const API_ENDPOINT = 'http://127.0.0.1:8000/ask'; 
+// CORRECTED: Must be the full path to the POST endpoint.
+const API_ENDPOINT = 'https://portfolio-chatbot-1-1.onrender.com/ask'; 
 
 // --- Component ---
 // The component now relies entirely on the 'isOpen' prop from the parent (App.jsx)
@@ -48,12 +48,13 @@ function RAGChatbotWidget({ isOpen, onClose }) {
         setIsLoading(true);
 
         try {
-            const response = await fetch(API_ENDPOINT, {
+            // Fetch targets the full API_ENDPOINT URL: https://portfolio-chatbot-1-1.onrender.com/ask
+            const response = await fetch(API_ENDPOINT, { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     question: userMsgText, 
-                    session_id: sessionId 
+                    session_id: sessionId // Key matches FastAPI's Pydantic model
                 }),
             });
 
@@ -69,6 +70,7 @@ function RAGChatbotWidget({ isOpen, onClose }) {
 
         } catch (error) {
             console.error("RAG Chatbot API Error:", error);
+            // This error message is for troubleshooting the connection/CORS
             const errorReply = "I'm having connection trouble. Please ensure the FastAPI server is running and CORS is configured.";
             setMessages((prev) => [...prev, { sender: "ai", text: errorReply }]);
             
@@ -86,7 +88,6 @@ function RAGChatbotWidget({ isOpen, onClose }) {
             className="rhea-chatbox fixed bottom-4 right-4 z-[9999] w-full max-w-xs h-[400px] shadow-2xl bg-[#0a0a1a] flex flex-col rounded-xl overflow-hidden border border-purple-500/30 transition-all duration-300"
             style={{
                 
-
                 // Ensure it looks good on small mobile screens
                 maxWidth: window.innerWidth < 640 ? '90%' : '320px' 
             }}
