@@ -9,7 +9,8 @@ import Portofolio from "./Pages/Portofolio";
 import ContactPage from "./Pages/Contact";
 import ProjectDetails from "./components/ProjectDetail";
 import WelcomeScreen from "./Pages/WelcomeScreen";
-import RAGChatbotWidget from "./Pages/RAGChatbotWidget"; // 🚨 1. Import the chat widget
+import RAGChatbotWidget from "./Pages/RAGChatbotWidget";// 🚨 1. Import the chat widget
+import Experience from "./components/Experience";
 import { AnimatePresence } from 'framer-motion';
 
 // --- Landing Page Component ---
@@ -30,8 +31,10 @@ const LandingPage = ({ showWelcome, setShowWelcome, onAIDemoClick }) => {
           <AnimatedBackground />
           <Home />
           <About />
+          <Experience />
           <Portofolio />
           <ContactPage />
+          
           <footer>
             <center>
               <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
