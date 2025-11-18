@@ -13,24 +13,24 @@ const Navbar = ({ onAIDemoClick }) => {
         { href: "#About", label: "About", type: "internal" },
         { href: "#Portofolio", label: "Portfolio", type: "internal" },
         { href: "#Contact", label: "Contact", type: "internal" },
+        { href: "#experience", label: "Experience", type: "internal" },
+
         // AI Demo now triggers a function instead of navigating
         { href: "#ai-demo", label: "AI Assistant 🤖", type: "function" }, 
     ];
 
     // --- Unified Handler for all links/buttons ---
     const handleNavLinkClick = (e, item) => {
-        setIsOpen(false); // Close mobile menu when an item is clicked
+        setIsOpen(false);
 
         if (item.type === "function") {
             e.preventDefault();
-            // 🚨 Trigger the parent function (handleAIDemoClick)
             if (onAIDemoClick) {
                 onAIDemoClick(e);
             }
             return;
         }
 
-        // Handle smooth scrolling for internal links
         if (item.type === "internal" && item.href.startsWith('#')) {
             e.preventDefault();
             const section = document.querySelector(item.href);
@@ -44,7 +44,7 @@ const Navbar = ({ onAIDemoClick }) => {
         }
     };
 
-    // --- Scroll & Active Section Logic (Unchanged) ---
+    // --- Scroll & Active Section Logic ---
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -80,13 +80,9 @@ const Navbar = ({ onAIDemoClick }) => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // --- Mobile Menu Body Overflow Fix (Unchanged) ---
+    // --- Mobile Menu Body Overflow Fix ---
     useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
+        document.body.style.overflow = isOpen ? 'hidden' : 'unset';
     }, [isOpen]);
 
 
@@ -102,6 +98,7 @@ const Navbar = ({ onAIDemoClick }) => {
         >
             <div className="mx-auto px-4 sm:px-6 lg:px-[10%]">
                 <div className="flex items-center justify-between h-16">
+
                     {/* Logo */}
                     <div className="flex-shrink-0">
                         <a
@@ -125,17 +122,24 @@ const Navbar = ({ onAIDemoClick }) => {
                                 >
                                     <span
                                         className={`relative z-10 transition-colors duration-300 ${
-                                            // Highlight only internal links for scroll tracking
-                                            item.type === 'internal' && activeSection === item.href.substring(1)
+                                            item.type === 'internal' &&
+                                            activeSection === item.href.substring(1)
                                                 ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
                                                 : "text-[#e2d3fd] group-hover:text-white"
                                         }`}
                                     >
-                                        {item.label}
+                                        {/* Desktop = full text, Mobile = short */}
+                                        <span className="hidden sm:inline">{item.label}</span>
+                                        <span className="inline sm:hidden">
+                                            {item.label === "AI Assistant 🤖" ? "AI 🤖" : item.label}
+                                        </span>
                                     </span>
+
+                                    {/* Underline animation */}
                                     <span
                                         className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform origin-left transition-transform duration-300 ${
-                                            item.type === 'internal' && activeSection === item.href.substring(1)
+                                            item.type === 'internal' &&
+                                            activeSection === item.href.substring(1)
                                                 ? "scale-x-100"
                                                 : "scale-x-0 group-hover:scale-x-100"
                                         }`}
@@ -153,32 +157,26 @@ const Navbar = ({ onAIDemoClick }) => {
                                 isOpen ? "rotate-90 scale-125" : "rotate-0 scale-100"
                             }`}
                         >
-                            {isOpen ? (
-                                <X className="w-6 h-6" />
-                            ) : (
-                                <Menu className="w-6 h-6" />
-                            )}
+                            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
                     </div>
+
                 </div>
             </div>
         
             {/* Mobile Menu Overlay */}
             <div
                 className={`md:hidden h-2/5 fixed inset-0 bg-[#030014] transition-all duration-300 ease-in-out ${
-                    isOpen
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-[-100%] pointer-events-none"
+                    isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
                 }`}
                 style={{ top: "64px" }}
             >
                 <div className="flex flex-col h-full">
-                    <div className="px-4 py-6 space-y-4 flex-1 ">
+                    <div className="px-4 py-6 space-y-4 flex-1">
                         {navItems.map((item, index) => (
                             <a
                                 key={item.label}
                                 href={item.href}
-                                // Use the unified click handler and close menu explicitly
                                 onClick={(e) => { handleNavLinkClick(e, item); setIsOpen(false); }}
                                 className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
                                     item.type === 'internal' && activeSection === item.href.substring(1)
@@ -191,12 +189,17 @@ const Navbar = ({ onAIDemoClick }) => {
                                     opacity: isOpen ? 1 : 0,
                                 }}
                             >
-                                {item.label}
+                                {/* Desktop full text, mobile short text */}
+                                <span className="hidden sm:inline">{item.label}</span>
+                                <span className="inline sm:hidden">
+                                    {item.label === "AI Assistant 🤖" ? "AI 🤖" : item.label}
+                                </span>
                             </a>
                         ))}
                     </div>
                 </div>
             </div>
+
         </nav>
     );
 };

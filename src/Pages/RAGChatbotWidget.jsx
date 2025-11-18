@@ -4,7 +4,8 @@ import React, { useEffect, useState, useRef } from "react";
 
 // --- Configuration ---
 // CORRECTED: Must be the full path to the POST endpoint.
-const API_ENDPOINT = 'https://portfolio-chatbot-1-1.onrender.com/ask'; 
+//const API_ENDPOINT = 'http://localhost:8000/ask'; 
+const API_ENDPOINT = 'https://portfolio-chatbot-backend-2-0.onrender.com'; 
 
 // --- Component ---
 // The component now relies entirely on the 'isOpen' prop from the parent (App.jsx)

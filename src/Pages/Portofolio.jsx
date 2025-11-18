@@ -103,18 +103,18 @@ function a11yProps(index) {
 // Added new ML/AI technologies to the list
 // ----------------------------------------------------------------------
 const techStacks = [
-  { icon: "python2.jpg", language: "Python" },
+  { icon: "/python.jpeg", language: "Python" },
   { icon: "ML.png", language: "Machine Learning" },
   { icon: "AI.webp", language: "AI / LLMs" },
-  { icon: "dist/langchain.svg", language: "LangChain" },
-  { icon: "dist/langgraph.svg", language: "LangGraph" },
-  { icon: "dist/yolo.svg", language: "YOLOv8" },
+  { icon: "/langchain.svg", language: "LangChain" },
+  { icon: "/langgraph.svg", language: "LangGraph" },
+  { icon: "/yolo.svg", language: "YOLOv8" },
   { icon: "reactjs.svg", language: "ReactJS" },
-  { icon: "dist/vectorstore.svg", language: "Vector DB" },
+  { icon: "/vectorstore.svg", language: "Vector DB" },
   { icon: "javascript.svg", language: "JavaScript" },
-  { icon: "dist/git12.png", language: "Git" },
-  { icon: "dist/django12.png", language: "Django" },
-  { icon: "dist/fastapi.png", language: "FASTAPI" },
+  { icon: "/git12.png", language: "Git" },
+  { icon: "/django12.png", language: "Django" },
+  { icon: "/fastapi.png", language: "FASTAPI" },
 ];
 
 // ----------------------------------------------------------------------
@@ -126,7 +126,7 @@ const projectsData = [
   {
     id: 1,
     // Ensure you place the image file in your assets folder!
-    Img: "dist/project_image/langgraph_chatbot.png", 
+    Img:"/images/langgraph_chatbot.png",
     Title: "LangGraph Memory Retention Chatbot",
     Description: "An advanced, ChatGPT-like chatbot leveraging LangGraph for robust memory retention and complex conversational flows. Uses a graph-based structure for intelligent context management.",
     Link: "https://github.com/KUSHRAJSINH/LangGraph_Chatbot", 
@@ -135,7 +135,7 @@ const projectsData = [
   },
   {
     id: 2,
-    Img: "dist/project_image/ai_agent_game.png", 
+    Img: "/images/game_agent.png",
     Title: "AI Game Agent (Number Guesser)",
     Description: "An interactive AI agent designed to efficiently guess numbers and play a game with you. It uses strategic algorithms for challenging and engaging interaction.",
     Link: "https://github.com/KUSHRAJSINH/game_agent_1.1", 
@@ -144,7 +144,7 @@ const projectsData = [
   },
   {
     id: 3,
-    Img: "dist/project_image/car_detection.png", 
+    Img: "/images/car_tracker.png",
     Title: "Real-time Car Detection (YOLOv8)",
     Description: "A high-performance system for real-time car detection and tracking in video streams, built using the state-of-the-art YOLOv8 model for high accuracy.",
     Link: "https://github.com/KUSHRAJSINH/YOLOv8-Car-Tracker", 
@@ -153,7 +153,7 @@ const projectsData = [
   },
   {
     id: 4,
-    Img: "dist/project_image/Rag_based_chatbot.png", 
+    Img:  "/images/rag_chatbot.png", 
     Title: "RAG-Based Chatbot for Documents",
     Description: "A Retrieval-Augmented Generation (RAG) chatbot tailored for personal documents. It provides context-aware answers grounded in your specific data, ideal for knowledge management.",
     Link: "https://github.com/KUSHRAJSINH/Rag_Chatbot", 
@@ -162,7 +162,7 @@ const projectsData = [
   },
   {
     id: 5,
-    Img: "dist/project_image/financial_agent.png", 
+    Img:  "/images/rag_chatbot.png", 
     Title: "Finance AI Agent with News Guidance",
     Description: "A smart AI agent designed for **financial analysis and guidance**, integrating the latest financial news to inform its recommendations. It helps users track investments, understand market movements, and make informed decisions with up-to-the-minute insights.",
     Link: "https://github.com/KUSHRAJSINH/Finance_AI_Agent", 
@@ -171,7 +171,7 @@ const projectsData = [
   },
   {
     id: 6,
-    Img: "dist/project_image/face_attedence.png", 
+    Img: "/images/finance_agent.png", 
     Title: "Face Recognition Attendance System",
     Description: "An automated attendance system that uses **OpenCV** for real-time **face recognition**. It eliminates manual entries by accurately identifying individuals from a video feed, ideal for academic or corporate environments.",
     Link: "https://github.com/KUSHRAJSINH/Face_Recognition_Attendance_System", 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
-import { Link } from "react-router-dom";
 import SocialLinks from "../components/SocialLinks";
-//import Komentar from "../components/Commentar";
 import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -13,12 +11,11 @@ const ContactPage = () => {
     email: "",
     message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    AOS.init({
-      once: false,
-    });
+    AOS.init({ once: false });
   }, []);
 
   const handleChange = (e) => {
@@ -29,49 +26,61 @@ const ContactPage = () => {
     }));
   };
 
+  // -------------------------------------
+  // 🚀 Web3Forms Submit Handler
+  // -------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     Swal.fire({
-      title: 'Sending Message...',
-      html: 'Please wait while we send your message',
+      title: "Sending Message...",
+      html: "Please wait while we send your message",
       allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      }
+      didOpen: () => Swal.showLoading(),
     });
 
     try {
-      // Get form data
-      const form = e.target;
-      const formData = new FormData(form);
+      const formDataObj = new FormData(e.target);
+      
 
-      // Submit form
-      await form.submit();
-
-      // Show success message
-      Swal.fire({
-        title: 'Success!',
-        text: 'Your message has been sent successfully!',
-        icon: 'success',
-        confirmButtonColor: '#6366f1',
-        timer: 2000,
-        timerProgressBar: true
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataObj,
       });
 
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
+      const data = await response.json();
+
+      if (data.success) {
+        Swal.fire({
+          title: "Success!",
+          text: "Your message has been sent successfully!",
+          icon: "success",
+          confirmButtonColor: "#6366f1",
+          timer: 2000,
+        });
+
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+
+        e.target.reset();
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: data.message || "Something went wrong.",
+          icon: "error",
+          confirmButtonColor: "#ff4d4d",
+        });
+      }
     } catch (error) {
       Swal.fire({
-        title: 'Error!',
-        text: 'Something went wrong. Please try again later.',
-        icon: 'error',
-        confirmButtonColor: '#6366f1'
+        title: "Network Error!",
+        text: "Unable to send message. Try again later.",
+        icon: "error",
+        confirmButtonColor: "#ff4d4d",
       });
     } finally {
       setIsSubmitting(false);
@@ -84,7 +93,7 @@ const ContactPage = () => {
         <h2
           data-aos="fade-down"
           data-aos-duration="1000"
-          className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
+          className="inline-block text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
         >
           <span
             style={{
@@ -99,6 +108,7 @@ const ContactPage = () => {
             Contact Me
           </span>
         </h2>
+
         <p
           data-aos="fade-up"
           data-aos-duration="1100"
@@ -112,11 +122,11 @@ const ContactPage = () => {
         className="h-auto py-10 flex items-center justify-center px-[5%] md:px-0"
         id="Contact"
       >
-        <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-12">
+        <div className="container px-[1%] grid grid-cols-1 gap-12">
           <div
             data-aos="fade-up"
             data-aos-duration="1200"
-            className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-5 py-10 sm:p-10 transform transition-all duration-300 hover:shadow-[#6366f1]/10 mx-auto max-w-3xl"
+            className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-5 py-10 sm:p-10 hover:shadow-[#6366f1]/10 mx-auto max-w-3xl"
           >
             <div className="flex justify-between items-start mb-8">
               <div>
@@ -124,28 +134,28 @@ const ContactPage = () => {
                   Get in Touch
                 </h2>
                 <p className="text-gray-400">
-                Interested in working together? I'm open to exciting projects, job opportunities, and tech discussions—let's talk!
+                  Interested in working together? I'm open to exciting projects,
+                  job opportunities, and tech discussions—let's talk!
                 </p>
               </div>
               <Share2 className="w-10 h-10 text-[#6366f1] opacity-50" />
             </div>
 
-            <form 
-              action="https://formsubmit.co/kushrajsinh24@gmail.com"
-              method="POST"
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-              {/* FormSubmit Configuration */}
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
+            {/* ---------------------------------
+                 🚀 Web3Forms Contact Form
+            ---------------------------------- */}
+            <form onSubmit={handleSubmit} className="space-y-6">
 
-              <div
-                data-aos="fade-up"
-                data-aos-delay="100"
-                className="relative group"
-              >
-                <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+              {/* Hidden Access Key */}
+              <input
+                type="hidden"
+                name="access_key"
+                value="6c498294-83fa-4ed9-a326-a0201bd797c4"
+              />
+
+              {/* Name */}
+              <div className="relative group" data-aos="fade-up" data-aos-delay="100">
+                <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1]" />
                 <input
                   type="text"
                   name="name"
@@ -153,16 +163,14 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none"
                   required
                 />
               </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="200"
-                className="relative group"
-              >
-                <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+
+              {/* Email */}
+              <div className="relative group" data-aos="fade-up" data-aos-delay="200">
+                <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1]" />
                 <input
                   type="email"
                   name="email"
@@ -170,35 +178,35 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none"
                   required
                 />
               </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="300"
-                className="relative group"
-              >
-                <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+
+              {/* Message */}
+              <div className="relative group" data-aos="fade-up" data-aos-delay="300">
+                <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1]" />
                 <textarea
                   name="message"
                   placeholder="Your Message"
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 h-[9.9rem] disabled:opacity-50"
+                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white h-[9.9rem]"
                   required
                 />
               </div>
+
+              {/* Submit Button */}
               <button
-                data-aos="fade-up"
-                data-aos-delay="400"
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                data-aos="fade-up"
+                data-aos-delay="400"
+                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:scale-[1.02] transition-all"
               >
                 <Send className="w-5 h-5" />
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
 

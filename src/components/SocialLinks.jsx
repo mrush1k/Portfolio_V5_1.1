@@ -22,7 +22,7 @@ const socialLinks = [
     displayName: "Instagram",
     subText: "@KUSHRAJSINH",
     icon: Instagram,
-    url: "https://www.instagram.com/Kushraj zr_/?hl=id",
+    url: "https://www.instagram.com/kushrajsinh_2414/ ",
     color: "#E4405F",
     gradient: "from-[#833AB4] via-[#E4405F] to-[#FCAF45]"
   },
