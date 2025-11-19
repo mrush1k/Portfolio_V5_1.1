@@ -57,7 +57,7 @@ const AboutPage = () => {
 
   return (
     <div
-      className="h-auto pb-[10%] text-white px-[5%] lg:px-[10%] mt-10"
+      className="h-auto section-spacing text-white px-[5%] lg:px-[10%]"
       id="About"
     >
       <Header />
