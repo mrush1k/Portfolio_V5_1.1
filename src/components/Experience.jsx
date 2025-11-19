@@ -118,7 +118,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience" className="relative mt-28 px-[5%] lg:px-[10%] pb-20 text-white">
+    <section id="experience" className="relative section-spacing px-[5%] lg:px-[10%] pb-20 text-white">
       <h3
         className="text-3xl md:text-5xl font-bold text-center mb-14 bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
         data-aos="zoom-in"
@@ -143,8 +143,8 @@ const Experience = () => {
 
           {/* LOGICRAYS */}
           <div className="relative" data-aos="fade-right">
-            <span className="absolute -left-12 top-2 w-10 h-10 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full animate-ping opacity-40"></span>
-            <span className="absolute -left-12 top-2 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full shadow-xl"></span>
+            <span className="absolute -left-10 top-2 sm:-left-12 top-7 w-10 h-10 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full animate-ping opacity-40"></span>
+            <span className="absolute -left-10 top-2 sm:-left-12 top-7 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full shadow-xl"></span>
 
             <div className="bg-white/10 p-8 rounded-3xl border border-white/10 backdrop-blur-lg shadow-lg hover:scale-[1.03] transition-all">
               <div className="flex items-center justify-between">
@@ -168,8 +168,8 @@ const Experience = () => {
 
           {/* PETPOOJA */}
           <div className="relative" data-aos="fade-right">
-            <span className="absolute -left-12 top-2 w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full animate-ping opacity-40"></span>
-            <span className="absolute -left-12 top-2 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full shadow-xl"></span>
+            <span className="absolute -left-10 top-7 sm:-left-12 top-7 w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full animate-ping opacity-40"></span>
+            <span className="absolute -left-10 top-7 sm:-left-12 top-7 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full shadow-xl"></span>
 
             <div className="bg-white/10 p-8 rounded-3xl border border-white/10 backdrop-blur-lg shadow-lg hover:scale-[1.03] transition-all">
               <div className="flex items-center justify-between">
