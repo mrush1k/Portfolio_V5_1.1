@@ -27,7 +27,7 @@ const Experience = () => {
   const [expDisplay, setExpDisplay] = useState({ years: 0, months: 0 });
 
   useEffect(() => {
-    const startDate = new Date("2025-04-01");
+    const startDate = new Date("2024-09-01");
     const now = new Date();
 
     let diffYears = now.getFullYear() - startDate.getFullYear();
@@ -118,7 +118,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience" className="relative mt-28 px-[5%] lg:px-[10%] pb-20 text-white">
+    <section id="experience" className="relative section-spacing px-[5%] lg:px-[10%] pb-20 text-white">
       <h3
         className="text-3xl md:text-5xl font-bold text-center mb-14 bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
         data-aos="zoom-in"
@@ -143,8 +143,8 @@ const Experience = () => {
 
           {/* LOGICRAYS */}
           <div className="relative" data-aos="fade-right">
-            <span className="absolute -left-12 top-2 w-10 h-10 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full animate-ping opacity-40"></span>
-            <span className="absolute -left-12 top-2 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full shadow-xl"></span>
+            <span className="absolute -left-10 top-2 sm:-left-12 top-7 w-10 h-10 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full animate-ping opacity-40"></span>
+            <span className="absolute -left-10 top-2 sm:-left-12 top-7 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full shadow-xl"></span>
 
             <div className="bg-white/10 p-8 rounded-3xl border border-white/10 backdrop-blur-lg shadow-lg hover:scale-[1.03] transition-all">
               <div className="flex items-center justify-between">
@@ -168,8 +168,8 @@ const Experience = () => {
 
           {/* PETPOOJA */}
           <div className="relative" data-aos="fade-right">
-            <span className="absolute -left-12 top-2 w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full animate-ping opacity-40"></span>
-            <span className="absolute -left-12 top-2 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full shadow-xl"></span>
+            <span className="absolute -left-10 top-7 sm:-left-12 top-7 w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full animate-ping opacity-40"></span>
+            <span className="absolute -left-10 top-7 sm:-left-12 top-7 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full shadow-xl"></span>
 
             <div className="bg-white/10 p-8 rounded-3xl border border-white/10 backdrop-blur-lg shadow-lg hover:scale-[1.03] transition-all">
               <div className="flex items-center justify-between">
@@ -190,11 +190,42 @@ const Experience = () => {
               </ul>
             </div>
           </div>
+          {/* SEAGULL VISION TECH – NOW CORRECT LOCATION */}
+          <div className="relative" data-aos="fade-right">
+            <span className="absolute -left-10 top-2 sm:-left-12 top-7 w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full animate-ping opacity-40"></span>
+            <span className="absolute -left-10 top-2 sm:-left-12 top-7 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full shadow-xl"></span>
+
+            <div className="bg-white/10 p-8 rounded-3xl border border-white/10 backdrop-blur-lg shadow-lg hover:scale-[1.03] transition-all">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <img src="/logos/seagull.jpeg" className="w-10 h-10 rounded-lg" />
+                  <h4 className="text-xl sm:text-2xl font-semibold">AIML Intern — Seagull Vision Tech</h4>
+                </div>
+                <span className="text-sm text-gray-300">Sept 2024 – Feb 2025</span>
+              </div>
+
+              <p className="mt-3 text-gray-300 text-sm">
+                Worked on ML model development, data processing & core ML workflows.
+              </p>
+
+              <ul className="mt-4 space-y-2 text-gray-300 text-[15px]">
+                <li>• Developed & optimized ML models</li>
+                <li>• Bagging & boosting techniques</li>
+                <li>• Traditional ML algorithm mastery</li>
+                <li>• Improved model performance & optimization</li>
+              </ul>
+            </div>
+            </div>
+
+          
 
         </div>
       </div>
 
-      {/* STATS SECTION */}
+
+
+
+      {/* STATS SECTION */} 
       <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
         {statsData.map((stat) => (
           <StatCard key={stat.label} {...stat} />
