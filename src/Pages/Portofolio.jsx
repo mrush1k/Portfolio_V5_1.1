@@ -162,7 +162,7 @@ const projectsData = [
   },
   {
     id: 5,
-    Img:  "/images/rag_chatbot.png", 
+    Img:  "/images/finance_agent.png", 
     Title: "Finance AI Agent with News Guidance",
     Description: "A smart AI agent designed for **financial analysis and guidance**, integrating the latest financial news to inform its recommendations. It helps users track investments, understand market movements, and make informed decisions with up-to-the-minute insights.",
     Link: "https://github.com/KUSHRAJSINH/Finance_AI_Agent", 
@@ -171,7 +171,7 @@ const projectsData = [
   },
   {
     id: 6,
-    Img: "/images/finance_agent.png", 
+    Img: "/images/face_recognition_attendance.png", 
     Title: "Face Recognition Attendance System",
     Description: "An automated attendance system that uses **OpenCV** for real-time **face recognition**. It eliminates manual entries by accurately identifying individuals from a video feed, ideal for academic or corporate environments.",
     Link: "https://github.com/KUSHRAJSINH/Face_Recognition_Attendance_System", 
